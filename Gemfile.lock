@@ -179,6 +179,7 @@ DEPENDENCIES
   factory_girl_rails
   haml-rails
   jbuilder (~> 2.0)
+  nokogiri
   pg
   rails (= 4.2.0)
   rspec-rails
