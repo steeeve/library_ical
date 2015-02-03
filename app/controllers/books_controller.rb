@@ -7,7 +7,10 @@ class BooksController < ApplicationController
   def index
     respond_to do |format|
       format.json { render :json => @books }
-      format.ics { render :text => due_date_calendar(@books).to_ical }
+      format.ics do
+        headers['Content-Type'] = "text/calendar; charset=UTF-8"
+        render :text => due_date_calendar(@books).to_ical
+      end
     end
   end
 
@@ -37,6 +40,7 @@ class BooksController < ApplicationController
             e.ip_class    = "PRIVATE"
           end
         end
+        cal.publish
       end
     end
 
