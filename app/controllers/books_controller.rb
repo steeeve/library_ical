@@ -33,13 +33,10 @@ class BooksController < ApplicationController
         books.each do |book|
           cal.event do |e|
             e.dtstart     = Icalendar::Values::Date.new(book.due_date)
-            e.dtend       = Icalendar::Values::Date.new(book.due_date + 1.day)
             e.summary     = "'#{book.title}' due"
             e.ip_class    = "PRIVATE"
           end
         end
-
-        cal.publish
       end
     end
 
