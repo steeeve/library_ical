@@ -21,7 +21,7 @@ gem 'haml-rails'
 gem 'mechanize'
 
 # iCal
-gem 'icalendar'
+gem 'ri_cal'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

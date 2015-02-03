@@ -1,4 +1,4 @@
-require 'icalendar'
+require 'ri_cal'
 require 'thingmaker/library_loans'
 
 class BooksController < ApplicationController
@@ -7,10 +7,7 @@ class BooksController < ApplicationController
   def index
     respond_to do |format|
       format.json { render :json => @books }
-      format.ics do
-        headers['Content-Type'] = "text/calendar; charset=UTF-8"
-        render :text => due_date_calendar(@books).to_ical
-      end
+      format.ics { render :text => due_date_calendar(@books).to_s, content_type: 'text/calendar; charset=utf-8' }
     end
   end
 
@@ -32,15 +29,14 @@ class BooksController < ApplicationController
 
     def due_date_calendar(books)
       # This shouldn't be in the controller
-      Icalendar::Calendar.new.tap do |cal|
+      # Icalendar::Calendar.new.tap do |cal|
+      RiCal.Calendar do |cal|
         books.each do |book|
           cal.event do |e|
-            e.dtstart     = Icalendar::Values::Date.new(book.due_date)
-            e.summary     = "'#{book.title}' due"
-            e.ip_class    = "PRIVATE"
+            e.dtstart     = book.due_date
+            e.summary     = "\"#{book.title}\" is due"
           end
         end
-        cal.publish
       end
     end
 
