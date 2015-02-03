@@ -29,6 +29,9 @@ gem 'icalendar'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+# Use puma
+gem 'puma'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
