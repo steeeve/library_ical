@@ -18,7 +18,9 @@ class BooksController < ApplicationController
     end
 
     def set_books
-      @books = library_loans.loans
+      @books = Rails.cache.fetch("books:#{borrower_number}", :expires_in => 12.hours) do
+        library_loans.loans
+      end
     end
 
     def borrower_number

@@ -35,6 +35,9 @@ gem 'puma'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'dalli'
+gem 'memcachier'
+
 group :production do
   gem 'rails_12factor'
 end
