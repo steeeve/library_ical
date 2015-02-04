@@ -29,8 +29,8 @@ class BooksController < ApplicationController
 
     def due_date_calendar(books)
       # This shouldn't be in the controller
-      # Icalendar::Calendar.new.tap do |cal|
       RiCal.Calendar do |cal|
+        cal.add_x_property 'x_wr_calname', 'Library Due Dates'
         books.each do |book|
           cal.event do |e|
             e.dtstart     = book.due_date
