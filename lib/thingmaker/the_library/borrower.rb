@@ -1,9 +1,8 @@
 require 'mechanize'
 
-module Thingmaker
-  Loan = Struct.new('Loan', :title, :author, :due_date)
+module TheLibrary
 
-  class LibraryLoans
+  class Borrower
 
     def initialize(borrower_number)
       @agent = Mechanize.new
@@ -22,7 +21,7 @@ module Thingmaker
     def loans
       safe_letters = /[^A-Za-z0-9\:\-\ ]+/
 
-      [].tap do |loans|
+      Loans.new.tap do |loans|
         @agent.get('https://capitadiscovery.co.uk/cornwall/account') do |account_page|
           loan_rows = account_page.search('#loans tbody tr')
 
@@ -30,7 +29,7 @@ module Thingmaker
             title = loan.search('.loanItemLink').text.gsub(safe_letters, '')
             author = loan.search('.author').text.gsub(safe_letters, '')
             due_date = Date.parse(loan.search('.accDue').text.gsub(safe_letters, ''))
-            loans.push Loan.new(title, author, due_date)
+            loans << Loan.new(title, author, due_date)
           end
         end
       end

@@ -1,42 +1,28 @@
-require 'ri_cal'
-require 'thingmaker/library_loans'
+require 'thingmaker/the_library'
 
 class BooksController < ApplicationController
-  before_action :set_books, only: [:index]
+  before_action :set_loans, only: [:index]
 
   def index
     respond_to do |format|
-      format.json { render :json => @books }
-      format.ics { render :text => due_date_calendar(@books).to_s, content_type: 'text/calendar; charset=utf-8' }
+      format.json { render :json => @loans }
+      format.ics { render :text => @loans.to_ical, content_type: 'text/calendar; charset=utf-8' }
     end
   end
 
   private
 
-    def library_loans
-      @library_loans ||= Thingmaker::LibraryLoans.new(borrower_number)
-    end
-
-    def set_books
-      @books = Rails.cache.fetch("books:#{borrower_number}", :expires_in => 12.hours) do
-        library_loans.loans
-      end
-    end
-
     def borrower_number
       params['borrower']
     end
 
-    def due_date_calendar(books)
-      # This shouldn't be in the controller
-      RiCal.Calendar do |cal|
-        cal.add_x_property 'x_wr_calname', 'Library Due Dates'
-        books.each do |book|
-          cal.event do |e|
-            e.dtstart     = book.due_date
-            e.summary     = "\"#{book.title}\" is due"
-          end
-        end
+    def borrower
+      @borrower ||= TheLibrary::Borrower.new(borrower_number)
+    end
+
+    def set_loans
+      @loans = Rails.cache.fetch("#{borrower_number}:loans", :expires_in => 12.hours) do
+        borrower.loans
       end
     end
 
