@@ -1,6 +1,6 @@
 require 'thingmaker/the_library'
 
-class BooksController < ApplicationController
+class LoansController < ApplicationController
   before_action :set_loans, only: [:index]
 
   def index

@@ -5,7 +5,7 @@ $(function() {
     e.preventDefault();
     e.stopPropagation();
     var borrower_number = $('#borrower_number').val();
-    $('#calendar_url').val('https://' + location.host + '/books.ics?borrower=' + borrower_number);
+    $('#calendar_url').val('https://' + location.host + '/loans.ics?borrower=' + borrower_number);
     $('#borrower-calendar').show();
   });
 });
