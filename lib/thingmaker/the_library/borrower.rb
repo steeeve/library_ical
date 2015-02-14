@@ -29,7 +29,7 @@ module TheLibrary
             title = loan.search('.loanItemLink').text.gsub(safe_letters, '')
             author = loan.search('.author').text.gsub(safe_letters, '')
             due_date = Date.parse(loan.search('.accDue').text.gsub(safe_letters, ''))
-            loans << Loan.new(title, author, due_date)
+            loans.add Loan.new(title, author, due_date)
           end
         end
       end
