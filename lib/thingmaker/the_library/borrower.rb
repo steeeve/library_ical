@@ -19,9 +19,8 @@ module TheLibrary
     end
 
     def loans
-      @agent.get('https://capitadiscovery.co.uk/cornwall/account') do |account_page|
-        Loans.new(account_page.search('#loans'))
-      end
+      account_page = @agent.get('https://capitadiscovery.co.uk/cornwall/account')
+      Loans.new(account_page.search('#loans'))
     end
 
   end
