@@ -10,7 +10,7 @@ module TheLibrary
     end
 
     def each
-      loan_rows = html_fragment.search('tr')
+      loan_rows = @html_fragment.search('tbody tr')
       loan_rows.each do |loan_row|
         yield Loan.new(loan_row)
       end

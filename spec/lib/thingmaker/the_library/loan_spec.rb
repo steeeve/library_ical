@@ -1,7 +1,8 @@
 require 'rails_helper'
-require 'thingmaker/the_library/loan'
+require 'nokogiri'
+require 'thingmaker/the_library'
 
-describe 'TheLibrary::Loan' do
+describe TheLibrary::Loan do
 
   let(:loan_fragment) { Nokogiri::HTML.fragment(File.read("spec/fixtures/loan_fragment.html")) }
   let(:expected_date) { Date.new(2015, 2, 17) }  # This will break in 2016
