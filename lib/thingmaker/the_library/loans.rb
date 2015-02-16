@@ -3,7 +3,7 @@ require 'ri_cal'
 module TheLibrary
 
   class Loans
-    extend Enumerable
+    include Enumerable
 
     def initialize(html_fragment)
       @html_fragment = html_fragment
