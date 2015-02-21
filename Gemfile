@@ -60,4 +60,5 @@ group :test do
   gem 'factory_girl_rails'
   gem 'webmock'
   gem 'vcr'
+  gem "codeclimate-test-reporter"
 end
