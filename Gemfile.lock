@@ -228,6 +228,7 @@ DEPENDENCIES
   puma
   rails (= 4.2.0)
   rails_12factor
+  rake
   ri_cal
   rspec-rails
   sass-rails (~> 5.0)
