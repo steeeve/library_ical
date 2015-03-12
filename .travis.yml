@@ -1,2 +1,5 @@
+script:
+  - RAILS_ENV=test bundle exec rake db:reset --trace
+  - RAILS_ENV=test bundle exec rake
 before_script:
   - cp config/database.yml.travis config/database.yml
