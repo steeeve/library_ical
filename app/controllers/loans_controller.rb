@@ -6,7 +6,7 @@ class LoansController < ApplicationController
   def index
     respond_to do |format|
       format.json
-      format.ics { render :text => @loans.to_ical, content_type: 'text/calendar; charset=utf-8' }
+      format.ics { render :text => @loans.to_ics, content_type: 'text/calendar; charset=utf-8' }
     end
   end
 

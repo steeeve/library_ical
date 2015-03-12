@@ -16,7 +16,7 @@ module TheLibrary
       end
     end
 
-    def to_ical
+    def to_ics
       calendar.to_s
     end
 
