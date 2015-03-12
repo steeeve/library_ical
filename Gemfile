@@ -54,9 +54,12 @@ group :development, :test do
 
   gem 'dotenv-rails'
 
+  gem 'rake'
+end
+
+group :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'webmock'
   gem 'vcr'
-  gem 'rake'
 end
