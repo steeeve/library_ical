@@ -17,6 +17,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Haml
 gem 'haml-rails'
 
+gem 'materialize-sass'
+
 # Web scraping
 gem 'mechanize'
 

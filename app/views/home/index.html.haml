@@ -1,13 +1,21 @@
-%h1 Cornwall Library iCal
-
-%p Your library due dates in your digital calendar?
-
-%p Enter your borrower number below:
+.row
+  .col.s12
+    %h1 Cornwall Library iCal
+    %h5 Get a digital calendar of your library due dates.
 
 %form.borrower#borrower
-  %input.borrower__number#borrower_number{type: 'text'}
-  %input.borrower__get-button{type: 'submit', value: 'Get my calendar'}
+  .row
+    .input-field.col.s12
+      %input.borrower__number#borrower_number{type: 'text'}
+      %label{for: 'borrower_number'} Library membership number
+  .row
+    .input-field.col.s12
+      %button.waves-effect.waves-light.btn.purple.darken-2{type: 'submit'} Get my calendar
 
-.borrower-calendar#borrower-calendar
-  Your calendar url (copy and paste into your calendar application):
-  %input.borrower-calendar__url#calendar_url{type: 'text'}
+.row
+  .col.s12
+    #borrower-calendar.borrower-calendar.card.purple.darken-2
+      .card-content.white-text
+        .card-title Your calendar URL
+        %p Copy and paste into your calendar application:
+        %input.borrower-calendar__url#calendar_url{type: 'text'}
