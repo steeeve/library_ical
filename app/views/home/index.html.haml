@@ -6,7 +6,8 @@
 %form.borrower#borrower
   .row
     .input-field.col.s12
-      %input.borrower__number#borrower_number{type: 'text'}
+      %i.mdi-maps-local-library.prefix
+      %input.borrower__number#borrower_number{type: 'text', placeholder: 'Enter your library membership number here'}
       %label{for: 'borrower_number'} Library membership number
   .row
     .input-field.col.s12
@@ -18,4 +19,6 @@
       .card-content.white-text
         .card-title Your calendar URL
         %p Copy and paste into your calendar application:
-        %input.borrower-calendar__url#calendar_url{type: 'text'}
+        .input-field
+          %i.mdi-action-event.prefix
+          %input.borrower-calendar__url#calendar_url{type: 'text', onclick: "this.select();"}
